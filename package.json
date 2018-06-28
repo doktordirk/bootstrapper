@@ -62,20 +62,22 @@
     "devDependencies": {}
   },
   "dependencies": {
+    "aurelia-binding": "github:doktordirk/binding#master",
+    "aurelia-dependency-injection": "github:doktordirk/dependency-injection#master",
+    "aurelia-framework": "github:doktordirk/framework#master",
+    "aurelia-router": "github:doktordirk/router#master",
+    "aurelia-templating": "github:doktordirk/templating#master",
+    "aurelia-templating-binding": "github:doktordirk/templating-binding#master",
+    "aurelia-templating-resources": "github:doktordirk/templating-resources#master",
+    "aurelia-templating-router": "github:doktordirk/templating-router#master",  
     "aurelia-event-aggregator": "^1.0.0",
-    "aurelia-framework": "^1.0.0",
     "aurelia-history": "^1.1.0",
     "aurelia-history-browser": "^1.1.0",
     "aurelia-loader-default": "^1.0.0",
     "aurelia-logging-console": "^1.0.0",
     "aurelia-pal": "^1.3.0",
     "aurelia-pal-browser": "^1.0.0",
-    "aurelia-polyfills": "^1.0.0",
-    "aurelia-router": "^1.5.0",
-    "aurelia-templating": "^1.0.0",
-    "aurelia-templating-binding": "^1.0.0",
-    "aurelia-templating-resources": "^1.0.0",
-    "aurelia-templating-router": "^1.0.0"
+    "aurelia-polyfills": "^1.0.0"
   },
   "devDependencies": {
     "aurelia-tools": "^0.2.4",

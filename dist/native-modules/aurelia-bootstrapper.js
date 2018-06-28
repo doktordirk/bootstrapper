@@ -1,14 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.starting = undefined;
-exports.bootstrap = bootstrap;
-
-require('aurelia-polyfills');
-
-var _aureliaPal = require('aurelia-pal');
+import 'aurelia-polyfills';
+import { PLATFORM, isInitialized } from 'aurelia-pal';
 
 var bootstrapPromises = [];
 var startResolve = void 0;
@@ -16,7 +7,7 @@ var startResolve = void 0;
 var startPromise = new Promise(function (resolve) {
   return startResolve = resolve;
 });
-var host = _aureliaPal.PLATFORM.global;
+var host = PLATFORM.global;
 var isNodeLike = typeof process !== 'undefined' && !process.browser;
 
 function ready() {
@@ -37,8 +28,8 @@ function ready() {
 }
 
 function createLoader() {
-  if (_aureliaPal.PLATFORM.Loader) {
-    return Promise.resolve(new _aureliaPal.PLATFORM.Loader());
+  if (PLATFORM.Loader) {
+    return Promise.resolve(new PLATFORM.Loader());
   }
 
   if (typeof AURELIA_WEBPACK_2_0 === 'undefined') {
@@ -90,7 +81,7 @@ function initializePal(loader) {
   }
 
   return loader.loadModule('aurelia-pal-' + type).then(function (palModule) {
-    return type === 'nodejs' && !_aureliaPal.isInitialized && palModule.globalize() || palModule.initialize();
+    return type === 'nodejs' && !isInitialized && palModule.globalize() || palModule.initialize();
   });
 }
 
@@ -105,7 +96,7 @@ function preparePlatform(loader) {
   return initializePal(loader).then(function () {
     return loader.normalize('aurelia-bootstrapper');
   }).then(function (bootstrapperName) {
-    var frameworkPromise = map(_aureliaPal.PLATFORM.moduleName('aurelia-framework', { exports: ['Aurelia'] }), bootstrapperName);
+    var frameworkPromise = map(PLATFORM.moduleName('aurelia-framework', { exports: ['Aurelia'] }), bootstrapperName);
 
     return Promise.all([frameworkPromise, frameworkPromise.then(function (frameworkName) {
       return map('aurelia-dependency-injection', frameworkName);
@@ -159,7 +150,7 @@ function run() {
   });
 }
 
-function bootstrap(configure) {
+export function bootstrap(configure) {
   var p = startPromise.then(function (factory) {
     return configure(factory());
   });
@@ -167,4 +158,4 @@ function bootstrap(configure) {
   return p;
 }
 
-var starting = exports.starting = run();
+export var starting = run();
